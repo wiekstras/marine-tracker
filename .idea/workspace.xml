@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="099492ef-b154-48fb-b021-ce8529105920" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/AisData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/boats.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/login.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/new-verification.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/register.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/reset.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(api)/boat/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(api)/mmsi/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/analytics/components/tool-bar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/analytics/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/boats/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/bar-chart.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/boat-table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/line-chart.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/side-bar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/tile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/favorites/components/boat-modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/favorites/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/settings/components/data-gathering-status.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/settings/components/data-gathering-toggle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/settings/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(protected)/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/auth/[...nextAuth]/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/auth/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/auth/login/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/auth/new-password/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/auth/new-verification/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/auth/register/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/auth/reset/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/back-button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/card-wrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/login-button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/login-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/new-password-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/new-verification-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/register-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/reset-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/role-gate.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auth/social.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form-error.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form-success.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/map/find-ship.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/map/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/map/map-renderer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/navbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/search.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/theme-provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/mode-toggle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/get-ship.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/like-ship.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/mail.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/password-reset-token.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/verification-token.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/drizzle.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-current-role.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-current-user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/db.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/helper/getTailwindConfig.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mail.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mongodb.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/prisma.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/tokens.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schemas/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/variants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2iy11BAdBnOVRQqDC3lrpxx1jtG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/wiekstras/dev/projects/marine-tracker",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Users/wiekstras/dev/projects/marine-tracker/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app/(api)/getboatbymmsi" />
+      <recent name="$PROJECT_DIR$/app/(protected)/dashboard/find-boat" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/(api)" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/actions" />
+      <recent name="$PROJECT_DIR$/app/(api)" />
+      <recent name="$PROJECT_DIR$/app/(protected)/dashboard/favorites/components" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="099492ef-b154-48fb-b021-ce8529105920" name="Changes" comment="" />
+      <created>1720447785187</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720447785187</updated>
+      <workItem from="1720447786217" duration="21378000" />
+      <workItem from="1720607238472" duration="6560000" />
+      <workItem from="1720627377971" duration="14292000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/(protected)/dashboard/settings/page.tsx</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/(protected)/dashboard/settings/components/data-gathering-status.tsx</url>
+          <line>47</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

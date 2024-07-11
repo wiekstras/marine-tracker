@@ -1,91 +1,92 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Vesselfinder from '@/components/map/find-ship';
-import { fetchBoats } from '@/lib/actions/boats';
-import BoatModal from "@/app/(protected)/dashboard/favorites/components/boat-modal";
+import {useCurrentRole} from "@/hooks/use-current-role";
+import {RoleGate} from "@/components/auth/role-gate";
 
 
-const ITEMS_PER_PAGE = 30; // 6 columns * 5 rows
-
-const BoatGrid = () => {
-    const [boats, setBoats] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [selectedBoatId, setSelectedBoatId] = useState<string | null>(null);
-
+const SettingsPage = () => {
+    const [dataGathering, setDataGathering] = useState(false);
+    const [apiKey, SetApiKey] = useState( process.env.API_KEY);
+    const role = useCurrentRole();
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await fetchBoats();
-            setBoats(data);
-            setTotalPages(Math.ceil(data.length / ITEMS_PER_PAGE));
+
+        // Function to fetch current data gathering status
+        const fetchStatus = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/status', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        //TODO Fix this
+                        'x-api-key': '8M1oEIxVnFOTWJXh7JOMA15g6Zn9Ny3o3/zH3WLBWzY=', // Use API_KEY directly
+                        // 'x-api-key': process.env.REACT_APP_API_KEY,  // Include API key from environment variable
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setDataGathering(data.status);
+                } else {
+                    console.error('Failed to fetch server status:', response.statusText);
+                    setDataGathering(false);
+                }
+            } catch (error) {
+                console.error('Error fetching server status:', error);
+                setDataGathering(false);
+
+            }
+
         };
 
-        fetchData();
+        fetchStatus();
     }, []);
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
+    const toggleDataGathering = async () => {
+        const action = dataGathering ? 'stop' : 'start';
+
+        try {
+            const endpoint = action === 'start' ? 'http://127.0.0.1:5000/start-gathering' : 'http://127.0.0.1:5000/stop-gathering';
+
+            const response = await fetch(endpoint, {
+                body: JSON.stringify({ action }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    //TODO Fix this
+                    'x-api-key': '8M1oEIxVnFOTWJXh7JOMA15g6Zn9Ny3o3/zH3WLBWzY=',
+                    // 'x-api-key': process.env.REACT_APP_API_KEY,  // Include API key from environment variable
+
+
+                },
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                setDataGathering(action === 'start');
+            } else {
+                console.error(`Failed to ${action} data gathering:`, response.statusText);
+            }
+        } catch (error) {
+            console.error(`Error ${action}ing data gathering:`, error);
+        }
     };
-
-    const handleBoatClick = (boatId) => {
-        setSelectedBoatId(boatId);
-    };
-
-    const handleCloseModal = () => {
-        setSelectedBoatId(null);
-    };
-
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const currentBoats = boats.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-    const nextBoats = boats.slice(startIndex + ITEMS_PER_PAGE, startIndex + 2 * ITEMS_PER_PAGE);
 
     return (
+        <RoleGate allowedRole="ADMIN">
         <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {currentBoats.map((boat) => (
-                    <div key={boat._id} className="border rounded p-4" onClick={() => handleBoatClick(boat._id)}>
-                        <h3 className="text-lg font-semibold">{boat.name || 'Unnamed Vessel'}</h3>
-                        <Vesselfinder mmsi={boat.mmsi} isVisible={true} />
-                    </div>
-                ))}
-                {nextBoats.map((boat) => (
-                    <div key={boat._id} style={{ display: 'none' }}>
-                        <Vesselfinder mmsi={boat.mmsi} isVisible={false} />
-                    </div>
-                ))}
-            </div>
-            <div className="flex justify-center mt-4">
-                <button
-                    disabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    className="px-4 py-2 m-1 text-white bg-blue-500 rounded disabled:bg-gray-300"
-                >
-                    Previous
-                </button>
-                {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                        key={index + 1}
-                        onClick={() => handlePageChange(index + 1)}
-                        className={`px-4 py-2 m-1 rounded ${currentPage === index + 1 ? 'bg-blue-700 text-white' : 'bg-blue-500 text-white'}`}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
-                <button
-                    disabled={currentPage === totalPages}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    className="px-4 py-2 m-1 text-white bg-blue-500 rounded disabled:bg-gray-300"
-                >
-                    Next
-                </button>
-            </div>
-            {selectedBoatId && (
-                <BoatModal boatId={selectedBoatId} isOpen={true} onClose={handleCloseModal} />
-            )}
+            <h1>Settings Page</h1>
+            <label>
+                <p>Server Status: {dataGathering}</p>
+                <p>Current role {role}</p>
+                <input
+                    type="checkbox"
+                    checked={dataGathering}
+                    onChange={toggleDataGathering}
+                />
+                Toggle Data Gathering
+            </label>
         </div>
+        </RoleGate>
     );
 };
 
-export default BoatGrid;
+export default SettingsPage;

@@ -1,131 +1,166 @@
-"use client";
+"use client"
 
-import { Bar, BarChart, Line, LineChart, ResponsiveContainer, PieChart, Pie } from "recharts"
+import * as React from "react"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
-
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-
-
-const data = [
-    {
-        revenue: 10400,
-        subscription: 240,
-    },
-    {
-        revenue: 14405,
-        subscription: 300,
-    },
-    {
-        revenue: 9400,
-        subscription: 200,
-    },
-    {
-        revenue: 8200,
-        subscription: 278,
-    },
-    {
-        revenue: 7000,
-        subscription: 189,
-    },
-    {
-        revenue: 9600,
-        subscription: 239,
-    },
-    {
-        revenue: 11244,
-        subscription: 278,
-    },
-    {
-        revenue: 26475,
-        subscription: 189,
-    },
-]
-
-const CardsStats = () => {
-
-
-    return (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
-            <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-base font-normal">Total Revenue</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="text-2xl font-bold">$15,231.89</div>
-                    <p className="text-xs text-muted-foreground">
-                        +20.1% from last month
-                    </p>
-                    <div className="h-[80px]">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <LineChart
-                                data={data}
-                                margin={{
-                                    top: 5,
-                                    right: 10,
-                                    left: 10,
-                                    bottom: 0,
-                                }}
-                            >
-                                <Line
-                                    type="monotone"
-                                    strokeWidth={2}
-                                    dataKey="revenue"
-                                    activeDot={{
-                                        r: 6,
-                                        style: { fill: "var(--theme-primary)", opacity: 0.25 },
-                                    }}
-                                    style={
-                                        {
-                                            stroke: "var(--theme-primary)",
-                                            // "--theme-primary": `hsl(${
-                                            //     theme?.cssVars[mode === "dark" ? "dark" : "light"]
-                                            //         .primary
-                                            // })`,
-                                        } as React.CSSProperties
-                                    }
-                                />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-                </CardContent>
-            </Card>
-            <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-base font-normal">Subscriptions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="text-2xl font-bold">+2350</div>
-                    <p className="text-xs text-muted-foreground">
-                        +180.1% from last month
-                    </p>
-                    <div className="mt-4 h-[80px]">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={data}>
-                                <Bar
-                                    dataKey="subscription"
-                                    style={
-                                        {
-                                            fill: "var(--theme-primary)",
-                                            opacity: 1,
-                                            // "--theme-primary": `hsl(${
-                                            //     theme?.cssVars[mode === "dark" ? "dark" : "light"]
-                                            //         .primary
-                                            // })`,
-                                        } as React.CSSProperties
-                                    }
-                                />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
-    )
+// Dummy function to fetch boat data
+async function fetchBoatData() {
+    try {
+        const response = await fetch('/boat', {
+            method: "GET",
+        });
+        if (response.ok) {
+            return await response.json();
+        }
+    } catch (error) {
+        console.error("Failed to fetch boat data:", error);
+    }
 }
 
-export default CardsStats;
+const chartConfig = {
+    count: {
+        label: "Boat Records",
+        color: "hsl(var(--chart-1))",
+    },
+} satisfies ChartConfig
+
+type Interval = 'day' | 'hour' | '5min';
+
+export function BarChartComponent() {
+    const [chartData, setChartData] = React.useState([]);
+    const [interval, setInterval] = React.useState<Interval>('day');
+
+    React.useEffect(() => {
+        const loadData = async () => {
+            const data = await fetchBoatData();
+            const aggregatedData = aggregateData(data, interval);
+            setChartData(aggregatedData);
+        };
+
+        loadData();
+    }, [interval]);
+
+    const aggregateData = (data: any[], interval: Interval) => {
+        const aggregated = data.reduce((acc, curr) => {
+            let key: string;
+            const date = new Date(curr.time);
+
+            switch (interval) {
+                case 'hour':
+                    key = `${date.toISOString().split('T')[0]} ${date.getUTCHours()}:00`;
+                    break;
+                case '5min':
+                    const minutes = Math.floor(date.getUTCMinutes() / 5) * 5;
+                    key = `${date.toISOString().split('T')[0]} ${date.getUTCHours()}:${minutes}`;
+                    break;
+                case 'day':
+                default:
+                    key = date.toISOString().split('T')[0];
+                    break;
+            }
+
+            if (!acc[key]) {
+                acc[key] = { date: key, count: 0 };
+            }
+            acc[key].count += 1;
+            return acc;
+        }, {});
+
+        return Object.values(aggregated);
+    };
+
+    const total = React.useMemo(
+        () => ({
+            count: chartData.reduce((acc, curr) => acc + curr.count, 0),
+        }),
+        [chartData]
+    );
+
+    return (
+        <Card>
+            <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
+                <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
+                    <CardTitle>Boat Records Over Time</CardTitle>
+                    <CardDescription>
+                        Showing total boat records per {interval}
+                    </CardDescription>
+                </div>
+                <div className="flex">
+                    <button
+                        data-active={true}
+                        className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                    >
+                        <span className="text-xs text-muted-foreground">
+                            {chartConfig.count.label}
+                        </span>
+                        <span className="text-lg font-bold leading-none sm:text-3xl">
+                            {total.count.toLocaleString()}
+                        </span>
+                    </button>
+                </div>
+            </CardHeader>
+            <div className="flex justify-end px-6 py-4">
+                <button onClick={() => setInterval('day')} className={`mx-2 ${interval === 'day' ? 'text-blue-500' : ''}`}>Day</button>
+                <button onClick={() => setInterval('hour')} className={`mx-2 ${interval === 'hour' ? 'text-blue-500' : ''}`}>Hour</button>
+                <button onClick={() => setInterval('5min')} className={`mx-2 ${interval === '5min' ? 'text-blue-500' : ''}`}>5 Minutes</button>
+            </div>
+            <CardContent className="px-2 sm:p-6">
+                <ChartContainer
+                    config={chartConfig}
+                    className="aspect-auto h-[250px] w-full"
+                >
+                    <BarChart
+                        accessibilityLayer
+                        data={chartData}
+                        margin={{
+                            left: 12,
+                            right: 12,
+                        }}
+                    >
+                        <CartesianGrid vertical={false} />
+                        <XAxis
+                            dataKey="date"
+                            tickLine={false}
+                            axisLine={false}
+                            tickMargin={8}
+                            minTickGap={32}
+                            tickFormatter={(value) => {
+                                const date = new Date(value);
+                                return interval === 'day'
+                                    ? date.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+                                    : interval === 'hour'
+                                        ? date.getUTCHours() + ":00"
+                                        : date.getUTCHours() + ":" + (date.getUTCMinutes() < 10 ? '0' : '') + date.getUTCMinutes();
+                            }}
+                        />
+                        <YAxis
+                            tickLine={false}
+                            axisLine={false}
+                            tickMargin={8}
+                        />
+                        <ChartTooltip
+                            content={
+                                <ChartTooltipContent
+                                    className="w-[150px]"
+                                    nameKey="count"
+                                    labelFormatter={(value) => {
+                                        return new Date(value).toLocaleDateString("en-US", {
+                                            month: "short",
+                                            day: "numeric",
+                                            year: "numeric",
+                                            hour: "numeric",
+                                            minute: "numeric"
+                                        });
+                                    }}
+                                />
+                            }
+                        />
+                        <Bar dataKey="count" fill={chartConfig.count.color} />
+                    </BarChart>
+                </ChartContainer>
+            </CardContent>
+        </Card>
+    )
+}

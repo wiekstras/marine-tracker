@@ -15,6 +15,7 @@ export const getVerificationTokenByEmail = async (email: string) => {
 
 export const getVerificationTokenByToken = async (token: string) => {
     try{
+        console.log(token)
         const verificationToken = await db.verificationToken.findUnique({
             where: {
                 token,

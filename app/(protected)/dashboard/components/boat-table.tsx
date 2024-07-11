@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -28,6 +26,9 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { likeBoat, unlikeBoat, getLikedBoats } from "@/data/like-ship";
+import { useSession } from "next-auth/react";
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 interface BoatTableProps {
     data: any[];
@@ -37,11 +38,35 @@ export default function BoatTable({ data }: BoatTableProps) {
     const [boats, setBoats] = useState(data);
     const [selectedBoat, setSelectedBoat] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
+    const session = useSession();
+    const user = session.data?.user;
+    const itemsPerPage = 10;
+
 
     useEffect(() => {
-        setBoats(data);
-    }, [data]);
+        if (user?.id) {
+            fetchLikedBoats(user.id);
+            setBoats(data);
+
+        }
+    }, [user, data]);
+
+    const fetchLikedBoats = async (userId) => {
+        try {
+            const likedBoats = await getLikedBoats(userId);
+            console.log(likedBoats);
+            setBoats((prevBoats) =>
+                prevBoats.map((boat) =>
+                    likedBoats.some((likedBoat) => likedBoat.mmsi === boat.mmsi)
+                        ? { ...boat, liked: true }
+                        : { ...boat, liked: false }
+                )
+            );
+
+        } catch (error) {
+            console.error("Error fetching liked boats:", error);
+        }
+    };
 
     const handleInfoClick = (boat) => {
         setSelectedBoat(boat);
@@ -52,7 +77,7 @@ export default function BoatTable({ data }: BoatTableProps) {
     };
 
     const handlePreviousPage = () => {
-        setCurrentPage((prevPage) => Math.max(prevPage, 1));
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
 
     const handleNextPage = () => {
@@ -61,12 +86,33 @@ export default function BoatTable({ data }: BoatTableProps) {
             return Math.min(prevPage + 1, maxPage);
         });
     };
-    console.log(data);
-    const paginatedBoats = boats.slice(
-            (currentPage - 1) * itemsPerPage,
-            currentPage * itemsPerPage
-    );
 
+    const handleLikeClick = async (boat) => {
+        try {
+            if (boat.liked) {
+                await unlikeBoat(user?.id, boat.mmsi);
+                setBoats((prevBoats) =>
+                    prevBoats.map((b) =>
+                        b.mmsi === boat.mmsi ? { ...b, liked: false } : b
+                    )
+                );
+            } else {
+                await likeBoat(user?.id, boat.mmsi, boat._id);
+                setBoats((prevBoats) =>
+                    prevBoats.map((b) =>
+                        b.mmsi === boat.mmsi ? { ...b, liked: true } : b
+                    )
+                );
+            }
+        } catch (error) {
+            console.error(`Error toggling like status: ${error.message}`);
+        }
+    };
+
+    const paginatedBoats = boats.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
 
     return (
         <Card>
@@ -82,7 +128,7 @@ export default function BoatTable({ data }: BoatTableProps) {
                             <TableHead className="hidden sm:table-cell">Type and Cargo</TableHead>
                             <TableHead className="hidden sm:table-cell">Speed Over Ground (SOG)</TableHead>
                             <TableHead className="hidden md:table-cell">Date Last Seen</TableHead>
-                            <TableHead className="text-right">Info</TableHead>
+                            <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -98,8 +144,20 @@ export default function BoatTable({ data }: BoatTableProps) {
                                     </Badge>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">{boat.time ? new Date(boat.time).toLocaleString() : 'N/A'}</TableCell>
-                                <TableCell className="text-right">
-                                    <Button size="icon" variant="default" className="rounded-2xl" onClick={() => handleInfoClick(boat)}>+</Button>
+                                <TableCell className="text-righ flex justify-end">
+                                    <Button size="icon" variant="default" className="rounded-2xl mr-2" onClick={() => handleInfoClick(boat)}>+</Button>
+                                    <Button size="icon" variant="default" className="rounded-2xl" onClick={() => handleLikeClick(boat)}>
+                                        {boat.liked ?
+                                            <AiFillHeart
+                                                size="24"
+                                                color="#FF0000"
+                                            /> :
+                                            <AiFillHeart
+                                                size="24"
+                                                color="#000000"
+                                            />
+                                        }
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         ))}

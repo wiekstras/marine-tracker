@@ -8,13 +8,19 @@ import json
 import uuid
 import threading
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-HOST = "153.44.253.27"
-PORT = 5631
-API_KEY = "8M1oEIxVnFOTWJXh7JOMA15g6Zn9Ny3o3/zH3WLBWzY="
+dotenv_path = '../.env'
+load_dotenv(dotenv_path)
+
+
+HOST = os.environ.get("DATA_SOURCE_HOST")
+PORT = os.environ.get("DATA_SOURCE_PORT")
+API_KEY = os.environ.get("API_KEY")
 
 Buffer = []
 gathering_data = False
@@ -54,7 +60,7 @@ def convert_to_serializable(data):
 def gather_data():
     global Buffer  # Declare Buffer as global
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((HOST, PORT))
+        s.connect((HOST, int(PORT)))
         while gathering_data:
             data = b''
             while True:

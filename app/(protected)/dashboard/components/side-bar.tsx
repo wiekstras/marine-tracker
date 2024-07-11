@@ -34,9 +34,9 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {ModeToggle} from "@/components/ui/mode-toggle";
 import Search from "@/components/search";
-import Tile from "@/app/dashboard/components/tile";
-import CardsStats from "@/app/dashboard/components/bar-chart";
-import BoatTable from "@/app/dashboard/components/boat-table";
+import Tile from "@/app/(protected)/dashboard/components/tile";
+import CardsStats from "@/app/(protected)/dashboard/components/bar-chart";
+import BoatTable from "@/app/(protected)/dashboard/components/boat-table";
 
 export default function Sidebar() {
     return (

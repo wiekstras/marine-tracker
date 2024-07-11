@@ -20,3 +20,11 @@ export async function getBoatById(id: string) {
 
     return boat;
 }
+
+export async function getBoatByMMSI(mmsi_number: number) {
+    const client = await connect;
+    const boats = await client.db("marinetracker").collection("aisData").find({ mmsi: mmsi_number }).toArray();
+    if (!boats.length) throw new Error("MMSI not found");
+
+    return boats; // Return an array of plain objects
+}
