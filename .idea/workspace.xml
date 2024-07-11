@@ -5,89 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="099492ef-b154-48fb-b021-ce8529105920" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actions/AisData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actions/boats.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actions/login.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actions/new-verification.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actions/register.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actions/reset.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(api)/boat/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(api)/mmsi/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/analytics/components/tool-bar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/analytics/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/boats/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/bar-chart.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/boat-table.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/line-chart.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/side-bar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/components/tile.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/favorites/components/boat-modal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/favorites/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/settings/components/data-gathering-status.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/settings/components/data-gathering-toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/dashboard/settings/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(protected)/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/auth/[...nextAuth]/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/auth/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/auth/login/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/auth/new-password/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/auth/new-verification/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/auth/register/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/auth/reset/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/back-button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/card-wrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/login-button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/login-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/new-password-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/new-verification-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/register-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/reset-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/role-gate.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth/social.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/form-error.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/form-success.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/map/find-ship.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/map/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/map/map-renderer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/navbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/search.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/theme-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ui/mode-toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/get-ship.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/like-ship.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/mail.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/password-reset-token.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/verification-token.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drizzle.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/use-current-role.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/use-current-user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/db.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/helper/getTailwindConfig.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/mail.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/mongodb.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/prisma.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/tokens.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/middleware.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/variants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +81,7 @@
       <updated>1720447785187</updated>
       <workItem from="1720447786217" duration="21378000" />
       <workItem from="1720607238472" duration="6560000" />
-      <workItem from="1720627377971" duration="14292000" />
+      <workItem from="1720627377971" duration="14712000" />
     </task>
     <servers />
   </component>
