@@ -82,17 +82,7 @@ The Flask application will start running on `http://localhost:5000`.
    
 3. Fill in the .env you have created earlier based on `example.env`
 
-4. Run the Next.js application:
 
-    ```bash
-    npm run dev
-    ```
-
-   or
-
-    ```bash
-    yarn dev
-    ```
 
 The Next.js application will start running on `http://localhost:3000`.
 
@@ -129,9 +119,27 @@ The database is now successfully setup!
 The mail server is now ready to go.
 
 ### Post installation
-1. Create a user account in the application.
-2. Go to the database and change the role of the user to `ADMIN` to get access to the admin panel.
-3. You can now start using the application.
+1. Run the Next.js application and the python application:
+2. Navigate to the `root` directory.
+
+    ```bash
+    npm run dev
+    ```
+
+   or
+
+    ```bash
+    yarn dev
+    ```
+3. Navigate to the `database` directory.
+
+    ```bash
+    python main.py
+    ```
+   
+4. Create a user account in the application.
+5. Go to the database and change the role of the user to `ADMIN` to get access to the admin panel.
+6. You can now start using the application.
 
 ### How They Work Together
 
