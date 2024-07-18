@@ -81,7 +81,7 @@ The Flask application will start running on `http://localhost:5000`.
     ```
    
 3. Fill in the .env you have created earlier based on `example.env`
-
+4. Change the API key in `dashboard/settings/page.tsx` line `22` and `55`
 
 
 The Next.js application will start running on `http://localhost:3000`.
